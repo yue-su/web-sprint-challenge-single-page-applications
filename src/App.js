@@ -5,6 +5,8 @@ import pizzaImg from "./Pizza.jpg"
 import { Link, Route } from 'react-router-dom'
 import Form from './components/form'
 import Pizza from './components/pizza'
+import formSchema from "../src/validation/formSchema"
+import * as yup from "yup"
 
 
 const StyledHeader = styled.header`
@@ -67,21 +69,21 @@ const App = () => {
   const [formErrors, setFormErrors] = useState(initialFormErrors)
 
    const update = (name, value) => {
-    // yup
-    //   .reach(formSchema, name)
-    //   .validate(value)
-    //   .then((valid) => {
-    //     setFormErrors({
-    //       ...formErrors,
-    //       [name]: "",
-    //     })
-    //   })
-    //   .catch((err) => {
-    //     setFormErrors({
-    //       ...formErrors,
-    //       [name]: err.errors[0],
-    //     })
-    //   })
+     yup
+       .reach(formSchema, name)
+       .validate(value)
+       .then((valid) => {
+         setFormErrors({
+           ...formErrors,
+           [name]: "",
+         })
+       })
+       .catch((err) => {
+         setFormErrors({
+           ...formErrors,
+           [name]: err.errors[0],
+         })
+       })
 
     const updatedValue = {
       ...formValues,
@@ -106,16 +108,16 @@ const App = () => {
     setFormValues(initialValue)
   }
 
-  let toppings = []
+  let tops = []
 
   const updateTopping = (name) => {
 
-    toppings.push(name)
-    console.log(toppings)
-    
+    tops.push(name)
+    console.log(tops)
+
     setFormValues({
       ...formValues,
-      toppings: toppings,}
+      toppings: tops,}
     )
   }
 

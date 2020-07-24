@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Button, Input, Checkbox } from "semantic-ui-react"
+import { Container, Button, } from "semantic-ui-react"
 
 const Form = props => {
 
@@ -30,13 +30,14 @@ const Form = props => {
             {/*----------------------------------*/}
             <lable>
               <h3>Name</h3>
-              <Input
+              <div>{errors.name}</div>
+              <input
                 name="name"
                 type="text"
                 placeholder="Name"
                 value={values.name}
                 onChange={updateHandler}
-              ></Input>
+              ></input>
             </lable>
             {/*----------------------------------*/}
             <label>
@@ -52,8 +53,7 @@ const Form = props => {
                 <option value="12">12</option>
                 <option value="15">15</option>
                 <option value="18">18</option>
-                        </select>
-                        
+              </select>
             </label>
             {/*----------------------------------*/}
             <div className="form--sauce">
@@ -170,11 +170,10 @@ const Form = props => {
             {/*----------------------------------*/}
             <label>
               <h3>Choice of Substitue</h3>
-              <Checkbox
+              <input
                 type="checkbox"
                 name="choice"
                 onChange={updateHandler}
-                className="checkbox"
                 checked={values.choice}
                 value="choice"
               />
@@ -183,13 +182,13 @@ const Form = props => {
             {/*----------------------------------*/}
             <label>
               <h3>Special Instructions</h3>
-              <Input
+              <input
                 name="instruction"
                 type="text"
                 placeholder="Instructions"
                 value={values.instruction}
                 onChange={updateHandler}
-              ></Input>
+              ></input>
             </label>
             <h3>Order placement</h3>
             <Button>Add to Order</Button>
