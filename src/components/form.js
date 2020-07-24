@@ -1,0 +1,124 @@
+import React from 'react';
+import { Container, Button, Input, Select, Radio, Checkbox } from "semantic-ui-react"
+
+const Form = props => {
+
+    const { values, submit, update, errors, updateTopping } = props
+    
+    const updateHandler = event => {
+        const name = event.target.name
+        const value = event.target.value
+        update(name, value)
+    }
+    
+    const submitHandler = event => {
+        event.preventDefault()
+        submit()
+    }
+
+    const checkboxHandler = event => {
+        const { name, checked } = event.target
+        updateTopping(name, checked) 
+    }
+
+    const ChoiceOfSize = [
+      { value: '10inch', text: "10inch" },
+      { value: '12inch', text: "11inch" },
+      { value: '13inch', text: "12inch" },
+      { value: '14inch', text: "13inch" },
+      { value: '15inch', text: "14inch" },
+    ]
+
+    return (
+      <section>
+        <Container>
+          <h2>Build Your Own Pizza</h2>
+          <form onSubmit={submitHandler}>
+            {/*----------------------------------*/}
+            <lable>
+              <h3>Name</h3>
+              <Input
+                name="name"
+                type="text"
+                placeholder="Name"
+                value={values.name}
+                onChange={updateHandler}
+              ></Input>
+            </lable>
+            {/*----------------------------------*/}
+            <label>
+              <h3>Choice of Size</h3>
+              <Select
+                name="size"
+                placeholder="select your size"
+                options={ChoiceOfSize}
+                onChange={updateHandler}
+                value={values.size}
+              ></Select>
+            </label>
+            {/*----------------------------------*/}
+            <div className="form--sauce">
+              <h3>Choice of Sauce</h3>
+              <label>
+                <input
+                  type="radio"
+                  name="sauce"
+                  value="original"
+                  checked={values.sauce === "original"}
+                  onChange={updateHandler}
+                ></input>{" "}
+                Original Red
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="sauce"
+                  value="garlic"
+                  checked={values.sauce === "garlic"}
+                  onChange={updateHandler}
+                ></input>{" "}
+                Garlic Ranch
+              </label>{" "}
+              <label>
+                <input
+                  type="radio"
+                  name="sauce"
+                  value="BBQ"
+                  checked={values.sauce === "BBQ"}
+                  onChange={updateHandler}
+                ></input>{" "}
+                BBQ
+              </label>{" "}
+              <label>
+                <input
+                  type="radio"
+                  name="sauce"
+                  value="spinach"
+                  checked={values.sauce === "spinach"}
+                  onChange={updateHandler}
+                ></input>{" "}
+                Spinach Alfredo
+              </label>
+            </div>
+            {/*----------------------------------*/}
+            <div className="form--toppings">
+              <h3>Add Toppings</h3>
+              <label>Peperoni<input type="checkbox" name="Peperoni" onChange={checkboxHandler}></input></label>
+              <label>Black Olives<input type="checkbox" name="Black Olives" onChange={checkboxHandler}></input></label>
+              <label>Canadian Bacon<input type="checkbox" name="Canadian Bacon" onChange={checkboxHandler}></input></label>
+              <label>Green Pepper<input type="checkbox" name="Green Pepper" onChange={checkboxHandler}></input></label>
+              <label>Pineapple<input type="checkbox" name="Pineapple" onChange={checkboxHandler}></input></label>
+              <label>Peperoni<input type="checkbox" name="Peperoni" onChange={checkboxHandler}></input></label>
+              <label>Peperoni<input type="checkbox" name="Peperoni" onChange={checkboxHandler}></input></label>
+              <label>Peperoni<input type="checkbox" name="Peperoni" onChange={checkboxHandler}></input></label>
+                        
+            </div>
+            {/*----------------------------------*/}
+            {/*----------------------------------*/}
+          </form>
+        </Container>
+      </section>
+    )
+}
+
+export default Form
