@@ -31,8 +31,6 @@ const StyledHeader = styled.header`
 
 `
 
-const URL = "https://reqres.in/api/users"
-
 const initialValue = {
   name: '',
   size: '',
@@ -52,7 +50,14 @@ const initialFormErrors = {
 }
 
 //const initialDisabled = true
-const initialUser = {}
+const initialUser = {
+  name: "",
+  size: "",
+  sauce: "",
+  toppings: [],
+  choice: false,
+  instruction: "",
+}
 
 const App = () => {
 
@@ -97,16 +102,17 @@ const App = () => {
       instruction: formValues.instruction,
     }
 
-    setUser([newUser])
+    setUser(newUser)
     setFormValues(initialValue)
   }
 
-  const toppings = []
+  let toppings = []
 
   const updateTopping = (name) => {
 
     toppings.push(name)
-
+    console.log(toppings)
+    
     setFormValues({
       ...formValues,
       toppings: toppings,}

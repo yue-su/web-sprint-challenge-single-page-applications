@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Button, Input, Select, Radio, Checkbox } from "semantic-ui-react"
+import { Container, Button, Input, Checkbox } from "semantic-ui-react"
 
 const Form = props => {
 
@@ -21,13 +21,6 @@ const Form = props => {
         updateTopping(name) 
     }
 
-    const ChoiceOfSize = [
-      { value: '10inch', text: "10inch" },
-      { value: '12inch', text: "11inch" },
-      { value: '13inch', text: "12inch" },
-      { value: '14inch', text: "13inch" },
-      { value: '15inch', text: "14inch" },
-    ]
 
     return (
       <section>
@@ -48,13 +41,19 @@ const Form = props => {
             {/*----------------------------------*/}
             <label>
               <h3>Choice of Size</h3>
-              <Select
+              <select
                 name="size"
                 placeholder="select your size"
-                options={ChoiceOfSize}
                 onChange={updateHandler}
                 value={values.size}
-              ></Select>
+              >
+                <option value="">- Select a Size -</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="15">15</option>
+                <option value="18">18</option>
+                        </select>
+                        
             </label>
             {/*----------------------------------*/}
             <div className="form--sauce">
@@ -191,9 +190,9 @@ const Form = props => {
                 value={values.instruction}
                 onChange={updateHandler}
               ></Input>
-                </label>
-                <h3>Order placement</h3>
-                    <Button>Add to Order</Button>
+            </label>
+            <h3>Order placement</h3>
+            <Button>Add to Order</Button>
           </form>
         </Container>
       </section>
