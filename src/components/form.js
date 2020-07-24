@@ -17,8 +17,8 @@ const Form = props => {
     }
 
     const checkboxHandler = event => {
-        const { name, checked } = event.target
-        updateTopping(name, checked) 
+        const { name} = event.target
+        updateTopping(name) 
     }
 
     const ChoiceOfSize = [
@@ -103,18 +103,97 @@ const Form = props => {
             {/*----------------------------------*/}
             <div className="form--toppings">
               <h3>Add Toppings</h3>
-              <label>Peperoni<input type="checkbox" name="Peperoni" onChange={checkboxHandler}></input></label>
-              <label>Black Olives<input type="checkbox" name="Black Olives" onChange={checkboxHandler}></input></label>
-              <label>Canadian Bacon<input type="checkbox" name="Canadian Bacon" onChange={checkboxHandler}></input></label>
-              <label>Green Pepper<input type="checkbox" name="Green Pepper" onChange={checkboxHandler}></input></label>
-              <label>Pineapple<input type="checkbox" name="Pineapple" onChange={checkboxHandler}></input></label>
-              <label>Peperoni<input type="checkbox" name="Peperoni" onChange={checkboxHandler}></input></label>
-              <label>Peperoni<input type="checkbox" name="Peperoni" onChange={checkboxHandler}></input></label>
-              <label>Peperoni<input type="checkbox" name="Peperoni" onChange={checkboxHandler}></input></label>
-                        
+              <label>
+                Peperoni
+                <input
+                  type="checkbox"
+                  name="Peperoni"
+                  onChange={checkboxHandler}
+                ></input>
+              </label>
+              <label>
+                Black Olives
+                <input
+                  type="checkbox"
+                  name="Black Olives"
+                  onChange={checkboxHandler}
+                ></input>
+              </label>
+              <label>
+                Canadian Bacon
+                <input
+                  type="checkbox"
+                  name="Canadian Bacon"
+                  onChange={checkboxHandler}
+                ></input>
+              </label>
+              <label>
+                Green Pepper
+                <input
+                  type="checkbox"
+                  name="Green Pepper"
+                  onChange={checkboxHandler}
+                ></input>
+              </label>
+              <label>
+                Pineapple
+                <input
+                  type="checkbox"
+                  name="Pineapple"
+                  onChange={checkboxHandler}
+                ></input>
+              </label>
+              <label>
+                Three Cheese
+                <input
+                  type="checkbox"
+                  name="Three Cheese"
+                  onChange={checkboxHandler}
+                ></input>
+              </label>
+              <label>
+                Extra Cheese
+                <input
+                  type="checkbox"
+                  name="Extra Cheese"
+                  onChange={checkboxHandler}
+                ></input>
+              </label>
+              <label>
+                Diced Tomatos
+                <input
+                  type="checkbox"
+                  name="Diced Tomatos"
+                  onChange={checkboxHandler}
+                ></input>
+              </label>
             </div>
             {/*----------------------------------*/}
+            <label>
+              <h3>Choice of Substitue</h3>
+              <Checkbox
+                type="checkbox"
+                name="choice"
+                onChange={updateHandler}
+                className="checkbox"
+                checked={values.choice}
+                value="choice"
+              />
+              I want gluten free.
+            </label>
             {/*----------------------------------*/}
+            <label>
+              <h3>Special Instructions</h3>
+              <Input
+                name="instruction"
+                type="text"
+                placeholder="Instructions"
+                value={values.instruction}
+                onChange={updateHandler}
+              ></Input>
+                </label>
+                <h3>Order placement</h3>
+                    <Button>Add to Order</Button>
           </form>
         </Container>
       </section>

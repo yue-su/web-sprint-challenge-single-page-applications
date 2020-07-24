@@ -87,6 +87,7 @@ const App = () => {
   }
 
   const submit = () => {
+
     const newUser = {
       name: formValues.name.trim(),
       size: formValues.size,
@@ -94,15 +95,15 @@ const App = () => {
       toppings: formValues.toppings,
       choice: formValues.choice,
       instruction: formValues.instruction,
-  
     }
+
     setUser([newUser])
     setFormValues(initialValue)
   }
 
   const toppings = []
 
-  const updateTopping = (name, checked) => {
+  const updateTopping = (name) => {
 
     toppings.push(name)
 
@@ -118,10 +119,10 @@ const App = () => {
         <Container className="header--top">
           <h2>LAMBDA EATS</h2>
           <div className="header--top--btn">
-            <Link to={'/'}>
+            <Link to={"/"}>
               <Button>Home</Button>
             </Link>
-            <Link to={'/help'}>
+            <Link to={"/help"}>
               <Button>Help</Button>
             </Link>
           </div>
@@ -129,14 +130,13 @@ const App = () => {
         <Container className="header--hero">
           <div>
             <h1>Your Favorite food, delivered while coding</h1>
-            <Link to={'/form'}>
+            <Link to={"/form"}>
               <Button>Pizza?</Button>
             </Link>
           </div>
         </Container>
       </StyledHeader>
-      <Route exact path='/'>
-        <Pizza user={user} />
+      <Route exact path="/">
         <Form
           values={formValues}
           submit={submit}
@@ -144,6 +144,9 @@ const App = () => {
           errors={formErrors}
           updateTopping={updateTopping}
         />
+
+        <Pizza user={user} />
+
       </Route>
     </>
   )
