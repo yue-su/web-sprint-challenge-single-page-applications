@@ -1,4 +1,3 @@
-
 const URL = "http://localhost:3000/"
 
 describe("Page loading ok", () => {
@@ -11,36 +10,30 @@ describe("Page loading ok", () => {
 })
 
 describe("create order", () => {
-    it("add username and select size", () => {
-        cy.get('input[name="name"]')
-            .type('Madman')
-        .should('have.value', 'Madman')
-    })
+  it("add username and select size", () => {
+    cy.get('input[name="name"]').type("Madman").should("have.value", "Madman")
+  })
 
-    it("select a size", () => {
-        cy.get('select[name="size"]')
-            .select('12')
-        .should('have.value', '12')
-    })
+  it("select a size", () => {
+    cy.get('select[name="size"]').select("12").should("have.value", "12")
+  })
 
-    it('select a sauce', () => {
-        cy.get('input[name="sauce"]')
-        .check('BBQ')
-    })
+  it("select a sauce", () => {
+    cy.get('input[name="sauce"]').check("BBQ")
+  })
 
-    it('select toppings', () => {
-        cy.get('input[name="Black Olives"]')
-            .check()
-        cy.get('input[name="Green Pepper"]')
-        .check()
-    })
+  it("select toppings", () => {
+    cy.get('input[name="blackOlives"]').check()
+    cy.get('input[name="greenPepper"]').check()
+  })
 
-    it('leave instructions', () => {
-        cy.get('input[name="instruction"]').type("add spicy sauce")
-        .should('have.value', 'add spicy sauce')
-    })
+  it("leave instructions", () => {
+    cy.get('input[name="instruction"]')
+      .type("add spicy sauce")
+      .should("have.value", "add spicy sauce")
+  })
 
-    it('submit order', () => {
-        cy.contains('Add to Order').click()
-    })
+  it("submit order", () => {
+    cy.contains("Add to Order").click()
+  })
 })

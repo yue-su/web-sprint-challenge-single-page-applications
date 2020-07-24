@@ -1,54 +1,56 @@
-import React, {useState} from "react";
+import React, { useState } from "react"
 import { Container, Button } from "semantic-ui-react"
-import styled from 'styled-components'
+import styled from "styled-components"
 import pizzaImg from "./Pizza.jpg"
-import { Link, Route } from 'react-router-dom'
-import Form from './components/form'
-import Pizza from './components/pizza'
+import { Link, Route } from "react-router-dom"
+import Form from "./components/form"
+import Pizza from "./components/pizza"
 import formSchema from "../src/validation/formSchema"
 import * as yup from "yup"
 
-
 const StyledHeader = styled.header`
-
-.header--top{
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 0;
-}
-
-.header--hero{
-  background-image: url(${pizzaImg});
-  background-size: cover;
-  height: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  div {
-    color:#fffffe;
-    text-align:center;
+  .header--top {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
   }
-}
 
+  .header--hero {
+    background-image: url(${pizzaImg});
+    background-size: cover;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    div {
+      color: #fffffe;
+      text-align: center;
+    }
+  }
 `
 
 const initialValue = {
-  name: '',
-  size: '',
-  sauce: '',
-  toppings: [],
+  name: "",
+  size: "",
+  sauce: "",
+  toppings: {
+    blackOlives: false,
+    canadianBacon: false,
+    greenPepper: false,
+    pineapple: false,
+  },
   choice: false,
-  instruction: ''
+  instruction: "",
 }
 
 const initialFormErrors = {
-  name:'',
+  name: "",
   size: "",
   sauce: "",
-  toppings: '',
-  choice: '',
-  instruction: '',
+  toppings: "",
+  choice: "",
+  instruction: "",
 }
 
 //const initialDisabled = true
@@ -62,28 +64,27 @@ const initialUser = {
 }
 
 const App = () => {
-
   const [user, setUser] = useState(initialUser)
   const [formValues, setFormValues] = useState(initialValue)
   //const [disabled, setDisabled] = useState(initialDisabled)
   const [formErrors, setFormErrors] = useState(initialFormErrors)
 
-   const update = (name, value) => {
-     yup
-       .reach(formSchema, name)
-       .validate(value)
-       .then((valid) => {
-         setFormErrors({
-           ...formErrors,
-           [name]: "",
-         })
-       })
-       .catch((err) => {
-         setFormErrors({
-           ...formErrors,
-           [name]: err.errors[0],
-         })
-       })
+  const update = (name, value) => {
+    yup
+      .reach(formSchema, name)
+      .validate(value)
+      .then((valid) => {
+        setFormErrors({
+          ...formErrors,
+          [name]: "",
+        })
+      })
+      .catch((err) => {
+        setFormErrors({
+          ...formErrors,
+          [name]: err.errors[0],
+        })
+      })
 
     const updatedValue = {
       ...formValues,
@@ -94,12 +95,13 @@ const App = () => {
   }
 
   const submit = () => {
-
     const newUser = {
       name: formValues.name.trim(),
       size: formValues.size,
       sauce: formValues.sauce,
-      toppings: formValues.toppings,
+      toppings: Object.keys(formValues.toppings).filter(
+        (topping) => formValues.toppings[topping]
+      ),
       choice: formValues.choice,
       instruction: formValues.instruction,
     }
@@ -108,17 +110,14 @@ const App = () => {
     setFormValues(initialValue)
   }
 
-  let tops = []
-
-  const updateTopping = (name) => {
-
-    tops.push(name)
-    console.log(tops)
-
+  const updateTopping = (name, checked) => {
     setFormValues({
       ...formValues,
-      toppings: tops,}
-    )
+      toppings: {
+        ...formValues.toppings,
+        [name]: checked, // not an array
+      },
+    })
   }
 
   return (
@@ -138,7 +137,7 @@ const App = () => {
         <Container className="header--hero">
           <div>
             <h1>Your Favorite food, delivered while coding</h1>
-            <Link to={"/form"}>
+            <Link to={"/"}>
               <Button>Pizza?</Button>
             </Link>
           </div>
@@ -154,9 +153,8 @@ const App = () => {
         />
 
         <Pizza user={user} />
-
       </Route>
     </>
   )
-};
-export default App;
+}
+export default App
